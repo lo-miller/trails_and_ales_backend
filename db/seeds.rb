@@ -1,8 +1,7 @@
 require 'open-uri'
 require 'json'
 
-Hike.delete_all
-# hikes = JSON.parse(hikes.to_json)
+# Hike.delete_all
 
 hikes = ActiveSupport::JSON.decode(File.read("db/wta-parks-data.json"))
 
