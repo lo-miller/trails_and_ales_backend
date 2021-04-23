@@ -1,4 +1,5 @@
 {
+  id: hike.id,
   name: hike.name,
   description: hike.description,
   latitude: hike.latitude,
