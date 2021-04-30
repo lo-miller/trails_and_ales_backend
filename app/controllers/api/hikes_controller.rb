@@ -1,6 +1,6 @@
 class Api::HikesController < ApplicationController
   def index
-    @hikes = Hike.all
+    @hikes = Hike.limit(100)
     render "index.json.jb"
   end
 
