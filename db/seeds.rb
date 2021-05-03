@@ -10,14 +10,14 @@ hikes = ActiveSupport::JSON.decode(File.read("db/wta-parks-data.json"))
 hikes.each do |hike|
   Hike.create!(
     name: hike["name"],
-    description: "",
+    description: hike["description"] || "",
     latitude: hike["coordinates"]["lat"],
     longitude: hike["coordinates"]["lon"],
-    state: "WA",
+    state: hike["state" || "WA",
     region: "",
     length: hike["length"],
-    difficulty: "",
-    type: "",
+    difficulty: hike["difficulty"] || "",
+    type: hike["type"] || "",
     highest_point: hike["elevation"]["Highest Point"],
     elevation_gain: hike["elevation"]["Gain"],
     features: hike["features"],

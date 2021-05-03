@@ -4,5 +4,6 @@ Rails.application.routes.draw do
     get "/hikes/:id" => "hikes#show"
     # get "/breweries" => "breweries#index"
     get "/search_results" => "search_results#index"
+    get "/territories" => "territories#index"
   end
 end
