@@ -1,0 +1,8 @@
+{
+  id: saved_hike.id,
+  user: saved_hike.user_id,
+  user_name: saved_hike.user.name,
+  hike: saved_hike.hike_id,
+  hike_name: saved_hike.hike.name,
+  status: saved_hike.status
+}

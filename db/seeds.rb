@@ -13,7 +13,7 @@ hikes.each do |hike|
     description: hike["description"] || "",
     latitude: hike["coordinates"]["lat"],
     longitude: hike["coordinates"]["lon"],
-    state: hike["state" || "WA",
+    state: hike["state"] || "WA",
     region: "",
     length: hike["length"],
     difficulty: hike["difficulty"] || "",
