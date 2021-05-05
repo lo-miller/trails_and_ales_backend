@@ -4,5 +4,6 @@
   user_name: saved_hike.user.name,
   hike: saved_hike.hike_id,
   hike_name: saved_hike.hike.name,
-  status: saved_hike.status
+  status: saved_hike.status,
+  brewery_name: saved_hike.brewery_name
 }

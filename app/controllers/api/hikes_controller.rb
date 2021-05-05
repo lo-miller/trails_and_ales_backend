@@ -1,6 +1,6 @@
 class Api::HikesController < ApplicationController
   def index
-    @hikes = Hike.where(state: params[:state] || "WA").limit(100)
+    @hikes = Hike.where(id: 5211) + Hike.where(state: params[:state] || "WA").limit(100) 
     render "index.json.jb"
   end
 

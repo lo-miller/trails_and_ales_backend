@@ -13,5 +13,6 @@
   elevation_gain: hike.elevation_gain,
   features: hike.features,
   url: hike.url,
-  required_pass: hike.required_pass
+  required_pass: hike.required_pass,
+  image: hike.image
 }

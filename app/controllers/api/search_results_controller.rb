@@ -3,7 +3,7 @@ class Api::SearchResultsController < ApplicationController
     p params[:location]
     p params
     # :params = {location: params[:location]}
-    response = HTTP.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json?type=brewery&keyword=brewery&radius=5000&key=#{Rails.application.credentials.google_maps_api[:api_key]}", :params => {:location => params[:location]})
+    response = HTTP.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json?type=brewery&keyword=brewery&key=#{Rails.application.credentials.google_maps_api[:api_key]}", :params => {:location => params[:location], :radius => params[:radius]})
     render json: response.parse
   end
 
