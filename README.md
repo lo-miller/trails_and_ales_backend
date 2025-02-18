@@ -1,21 +1,22 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+This is the backend for the Trails and Ales application, to be run in conjunction with a Vue.js frontend located [here](https://github.com/lo-miller/trails_and_ales_frontend)
 
 * Ruby version
+  [Ruby 3.1.2](https://www.ruby-lang.org/en/documentation/installation/)
 
 * System dependencies
 
 * Configuration
-
-* Database creation
-
-* Database initialization
+  - clone repo
+  - run `bundle install`
+  - create, seed, and migrate the database:
+    - `rails db:create`
+    - `rails db:seed`
+    - `rails db:migrate`
 
 * How to run the test suite
+  (to be added)
 
 * Services (job queues, cache servers, search engines, etc.)
 
