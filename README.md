@@ -22,4 +22,7 @@ This is the backend for the Trails and Ales application, to be run in conjunctio
 
 * Deployment instructions
 
-* ...
+* References
+  Google maps API: https://developers.google.com/maps/documentation/javascript 
+
+
