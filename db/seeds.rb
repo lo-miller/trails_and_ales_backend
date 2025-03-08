@@ -3,10 +3,6 @@ require 'json'
 
 # Hike.delete_all
 
-# hikes = ActiveSupport::JSON.decode(File.read("db/wta-parks-data.json"))
-
-# hikes =  hikes[0]
-
 # hikes.each do |hike|
 #   Hike.create!(
 #     name: hike["name"],
@@ -73,7 +69,5 @@ Dir.foreach(path) do |filename|
       end
     }
   end
-
-
 
 end

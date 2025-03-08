@@ -1,7 +1,6 @@
 {
   id: hike.id,
   name: hike.name,
-  description: hike.description,
   latitude: hike.latitude,
   longitude: hike.longitude,
   state: hike.state,
@@ -11,8 +10,8 @@
   type: hike.route_type,
   highest_point: hike.highest_point,
   elevation_gain: (hike.elevation_gain).round(),
-  features: hike.features,
+  features: hike.features.pluck(:feature_name),
   url: hike.url,
-  required_pass: hike.required_pass,
-  image: hike.image
+  image: hike.image,
+  photo_url: hike.photo_url
 }
