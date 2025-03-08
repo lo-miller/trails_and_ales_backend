@@ -1,7 +1,5 @@
 require 'open-uri'
 require 'json'
-require 'pathname'
-
 
 # Hike.delete_all
 
@@ -19,7 +17,7 @@ require 'pathname'
 #     region: "",
 #     length: hike["length"],
 #     difficulty: hike["difficulty"] || "",
-#     type: hike["type"] || "",
+#     route_type: hike["type"] || "",
 #     highest_point: hike["elevation"]["Highest Point"],
 #     elevation_gain: hike["elevation"]["Gain"],
 #     features: hike["features"],
@@ -31,37 +29,35 @@ require 'pathname'
 
 path = "../trail_data/state_trail_data"
 
-Dir.foreach(path) do |file| 
-  state = File.basename(file, ".json")
-  
+Dir.foreach(path) do |filename| 
+  p filename
+  next if filename == '.' || filename == '..' || filename == '.DS_Store'
 
-  # hikes = JSON.parse
-  # hikes = JSON.parse(File.read(file))
-  # hikes = ActiveSupport::JSON.decode(File.read(file))
-  # p hikes
-  # hikes.each do |hike|
-    # Hike.create!(
-    #   name: hike["name"],
-    #   description: hike["overview"] || "",
-    #   latitude: hike["_geoloc"]["lat"],
-    #   longitude: hike["_geoloc"]["lon"],
-    #   state: hike["state_name"] || state,
-    #   region: hike["area_name"] || "",
-    #   length: hike["length"],
-    #   difficulty: hike["difficulty_rating"] || "",
-    #   type: hike["route_type"] || "",
-    #   highest_point: "",
-    #   elevation_gain: hike["elevation_gain"],
-    #   features: hike["features"],
-    #   url: hike["url"],
-    #   required_pass: hike["requiredPass"],
-    #   rating: hike["avg_rating"],
-    #   photo_url: hike["profile_photo_url"]
-    # )
-  # end
+  state_file = File.read("#{path}/#{filename}")
+  hikes = JSON.parse(state_file)
 
-  puts "State is #{state}" 
-  # p hike
+  route_type_map = { "L" => "Loop", "O" => "Out-and-back", "P" => "Point-to-point" }
+  difficulty_map = { "1" => "Easy", "3" => "Moderate", "5" => "Hard", "7" => "Hard" }
+
+  hikes.each do |hike|
+    Hike.create!(
+      name: hike["name"],
+      description: hike["overview"] || "",
+      latitude: hike["_geoloc"]["lat"],
+      longitude: hike["_geoloc"]["lng"],
+      state: hike["state_name"] || state,
+      region: hike["area_name"] || "",
+      length: hike["length"],
+      difficulty: difficulty_map[hike["difficulty_rating"]],
+      route_type: route_type_map[hike["route_type"]],
+      highest_point: "",
+      elevation_gain: hike["elevation_gain"],
+      features: hike["feature_names"],
+      url: "https://www.alltrails.com/trail/#{hike["slug"]}",
+      required_pass: hike["requiredPass"],
+      rating: hike["avg_rating"],
+      photo_url: hike["profile_photo_url"]
+    )
+  end
+
 end
-
-#route type: "L" = loop, "O" = out-and-back, "P" = point-to-point

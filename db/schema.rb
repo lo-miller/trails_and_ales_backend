@@ -10,25 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_03_06_024531) do
+ActiveRecord::Schema.define(version: 2025_03_08_000616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "hikes", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.text "description"
-    t.float "latitude"
-    t.float "longitude"
-    t.string "state"
+    t.float "latitude", null: false
+    t.float "longitude", null: false
+    t.string "state", null: false
     t.string "region"
-    t.float "length"
-    t.string "difficulty"
-    t.string "type"
+    t.float "length", null: false
+    t.string "difficulty", null: false
+    t.string "route_type"
     t.float "highest_point"
     t.float "elevation_gain"
     t.text "features"
-    t.string "url"
+    t.string "url", null: false
     t.string "required_pass"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
