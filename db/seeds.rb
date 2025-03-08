@@ -40,24 +40,40 @@ Dir.foreach(path) do |filename|
   difficulty_map = { "1" => "Easy", "3" => "Moderate", "5" => "Hard", "7" => "Hard" }
 
   hikes.each do |hike|
-    Hike.create!(
-      name: hike["name"],
-      description: hike["overview"] || "",
-      latitude: hike["_geoloc"]["lat"],
-      longitude: hike["_geoloc"]["lng"],
-      state: hike["state_name"] || state,
-      region: hike["area_name"] || "",
-      length: hike["length"],
-      difficulty: difficulty_map[hike["difficulty_rating"]],
-      route_type: route_type_map[hike["route_type"]],
-      highest_point: "",
-      elevation_gain: hike["elevation_gain"],
-      features: hike["feature_names"],
-      url: "https://www.alltrails.com/trail/#{hike["slug"]}",
-      required_pass: hike["requiredPass"],
-      rating: hike["avg_rating"],
-      photo_url: hike["profile_photo_url"]
-    )
+    if Hike.exists?(name: hike["name"])
+      this_hike = Hike.where(name: hike["name"])
+    else
+      this_hike = Hike.create!(
+        name: hike["name"],
+        description: hike["overview"] || "",
+        latitude: hike["_geoloc"]["lat"],
+        longitude: hike["_geoloc"]["lng"],
+        state: hike["state_name"] || state,
+        region: hike["area_name"] || "",
+        length: hike["length"],
+        difficulty: difficulty_map[hike["difficulty_rating"]],
+        route_type: route_type_map[hike["route_type"]],
+        highest_point: "",
+        elevation_gain: hike["elevation_gain"],
+        url: "https://www.alltrails.com/trail/#{hike["slug"]}",
+        required_pass: hike["requiredPass"],
+        rating: hike["avg_rating"],
+        photo_url: hike["profile_photo_url"]
+      )
+    end
+
+    features = hike["feature_names"] 
+    p features
+    features.each { |i|
+      if  Feature.exists?(feature_name: i)
+        this_hike.features.create!(feature_name: i)
+      else
+        Feature.create!(feature_name: i)
+        this_hike.features.create!(feature_name: i)
+      end
+    }
   end
+
+
 
 end
