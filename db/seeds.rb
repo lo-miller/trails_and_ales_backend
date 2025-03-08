@@ -41,9 +41,9 @@ Dir.foreach(path) do |filename|
 
   hikes.each do |hike|
     if Hike.exists?(name: hike["name"])
-      this_hike = Hike.where(name: hike["name"])
+      @this_hike = Hike.find_by(name: hike["name"])
     else
-      this_hike = Hike.create!(
+      @this_hike = Hike.create!(
         name: hike["name"],
         description: hike["overview"] || "",
         latitude: hike["_geoloc"]["lat"],
@@ -63,13 +63,13 @@ Dir.foreach(path) do |filename|
     end
 
     features = hike["feature_names"] 
-    p features
+   
     features.each { |i|
-      if  Feature.exists?(feature_name: i)
-        this_hike.features.create!(feature_name: i)
+      if Feature.exists?(feature_name: i)
+        @this_hike.features << Feature.where(feature_name: i)
       else
-        Feature.create!(feature_name: i)
-        this_hike.features.create!(feature_name: i)
+        f = Feature.create!(feature_name: i)
+        @this_hike.features << f
       end
     }
   end
