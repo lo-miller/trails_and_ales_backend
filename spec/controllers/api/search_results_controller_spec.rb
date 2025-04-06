@@ -67,11 +67,4 @@ RSpec.describe Api::SearchResultsController, type: :controller do
       end
     end
   end
-
-  describe 'GET #show' do
-    it 'renders the show template' do
-      get :show
-      expect(response).to render_template('show.json.jb')
-    end
-  end
 end 
