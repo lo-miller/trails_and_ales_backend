@@ -75,6 +75,7 @@ GEM
     diff-lcs (1.6.1)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
+    drb (2.2.1)
     erubi (1.10.0)
     factory_bot (6.5.1)
       activesupport (>= 6.1.0)
@@ -247,6 +248,7 @@ DEPENDENCIES
   bigdecimal
   bootsnap (~> 1.18, >= 1.18.3)
   byebug
+  drb
   factory_bot_rails
   faker
   http
