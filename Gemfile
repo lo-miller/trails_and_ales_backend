@@ -32,6 +32,8 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'drb'
+  gem 'http'
+  gem 'rails-controller-testing'
 end
 
 group :development do

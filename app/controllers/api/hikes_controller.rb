@@ -5,7 +5,6 @@ class Api::HikesController < ApplicationController
   end
 
   def show
-    p params[:id]
     @hike = Hike.find_by(id: params[:id])
     render "show.json.jb"
   end

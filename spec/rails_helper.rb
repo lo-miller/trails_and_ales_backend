@@ -7,6 +7,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require 'factory_bot_rails'
 require 'faker'
+require 'http'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -64,4 +65,20 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.include FactoryBot::Syntax::Methods
+
+  # Add these lines
+  [:controller, :view, :request].each do |type|
+    config.include ::Rails::Controller::Testing::TestProcess, type: type
+    config.include ::Rails::Controller::Testing::TemplateAssertions, type: type
+    config.include ::Rails::Controller::Testing::Integration, type: type
+  end
+
+  # Clean up any HTTP mocks after each test
+  config.after(:each) do
+    if RSpec.current_example.metadata[:type] == :controller
+      HTTP.instance_variables.each do |var|
+        HTTP.remove_instance_variable(var) if HTTP.instance_variable_defined?(var)
+      end
+    end
+  end
 end
