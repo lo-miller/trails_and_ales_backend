@@ -1,0 +1,15 @@
+json.id hike.id
+json.name hike.name
+json.latitude hike.latitude
+json.longitude hike.longitude
+json.state hike.state
+json.region hike.region
+json.length ((hike.length)*0.000621371).round(2)
+json.difficulty hike.difficulty
+json.route_type hike.route_type
+json.highest_point hike.highest_point
+json.elevation_gain hike.elevation_gain&.round
+json.features hike.features.pluck(:feature_name)
+json.url hike.url
+json.image hike.image
+json.photo_url hike.photo_url

@@ -3,7 +3,7 @@ class Api::SavedHikesController < ApplicationController
 
   def index
     @saved_hikes = current_user.saved_hikes.where(status: "saved")
-    render "index.json.jb"
+    render :index
   end
   
   def create
@@ -13,7 +13,7 @@ class Api::SavedHikesController < ApplicationController
       status: "saved",
       brewery_name: params[:brewery_name]
     )
-    render "show.json.jb"
+    render :show
   end
 
 end

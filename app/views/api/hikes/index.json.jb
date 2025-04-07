@@ -1,3 +1,0 @@
-@hikes.map do |hike|
-  render partial: "hike.json.jb", locals: {hike: hike}
-end

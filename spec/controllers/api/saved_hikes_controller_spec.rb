@@ -32,7 +32,7 @@ RSpec.describe Api::SavedHikesController, type: :controller do
 
     it 'renders the index template' do
       get :index
-      expect(response).to render_template('index.json.jb')
+      expect(response).to render_template(:index)
     end
 
     context 'when user is not authenticated' do
@@ -74,7 +74,7 @@ RSpec.describe Api::SavedHikesController, type: :controller do
 
       it 'renders the show template' do
         post :create, params: valid_params
-        expect(response).to render_template('show.json.jb')
+        expect(response).to render_template(:show)
       end
     end
 

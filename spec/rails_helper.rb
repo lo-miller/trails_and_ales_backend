@@ -81,4 +81,10 @@ RSpec.configure do |config|
       end
     end
   end
+
+  config.render_views = true
+  
+  config.before(:each, type: :controller) do
+    request.env["HTTP_ACCEPT"] = 'application/json'
+  end
 end

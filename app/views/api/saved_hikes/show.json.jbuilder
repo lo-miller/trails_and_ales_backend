@@ -1,0 +1,1 @@
+json.partial! 'api/saved_hikes/saved_hike', saved_hike: @saved_hike

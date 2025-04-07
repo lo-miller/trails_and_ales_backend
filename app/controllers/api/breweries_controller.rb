@@ -15,6 +15,6 @@ class Api::BreweriesController < ApplicationController
   end
 
   def show
-    render "show.json.jb"
+    render "show.json.jbuilder"
   end
 end
